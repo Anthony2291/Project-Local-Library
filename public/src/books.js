@@ -1,7 +1,5 @@
-function findAuthorById(authors, id) {
-  let result = authors.find((author) => author.id === id);
-  return result;
-}
+const {findAuthorById} = require("./helpers")
+
 
 function findBookById(books, id) {
   let result = books.find((book) => book.id === id);
@@ -18,7 +16,7 @@ function getBorrowersForBook(book, accounts) {
   let result = book.borrows
   .slice(0, 10)
   .map((borrow) => {
-    let account = accounts.find((account) => account.id == borrow.id);
+    let account = findAuthorById(accounts, borrow.id);
     return {
       ...borrow,
       ...account,

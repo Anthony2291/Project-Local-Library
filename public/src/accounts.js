@@ -1,3 +1,4 @@
+const {findAuthorById} = require("./helpers")
 function findAccountById(accounts, id) {
   let result = accounts.find((account) => account.id === id)
   return result 
@@ -17,7 +18,7 @@ function getTotalNumberOfBorrows(account, books) {
 function getBooksPossessedByAccount(account, books, authors) {
  return books.filter((book) => book.borrows[0].id == account.id && book.borrows[0].returned == false) 
  .map(book => {
-   book.author = authors.find(author => author.id == book.authorId)
+   book.author = findAuthorById(authors, book.authorId)
    return book
  })
 }
